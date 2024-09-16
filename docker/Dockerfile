@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.11-slim-bookworm
 
 # install deps
 RUN apt-get update && apt-get -y install \
@@ -7,17 +7,15 @@ RUN apt-get update && apt-get -y install \
 # setup RIFE
 WORKDIR /rife
 COPY . .
-RUN pip3 install -r requirements.txt
+COPY --from=ghcr.io/astral-sh/uv:python3.11-bookworm-slim /usr/local/bin/uv /bin/uv
+RUN uv pip sync --system requirements.txt
 
 ADD docker/inference_img /usr/local/bin/inference_img
 RUN chmod +x /usr/local/bin/inference_img
 ADD docker/inference_video /usr/local/bin/inference_video
 RUN chmod +x /usr/local/bin/inference_video
 
-# add pre-trained models
-COPY train_log /rife/train_log
-
 WORKDIR /host
 ENTRYPOINT ["/bin/bash"]
 
-ENV NVIDIA_DRIVER_CAPABILITIES all
+ENV NVIDIA_DRIVER_CAPABILITIES=all

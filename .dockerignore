@@ -1,0 +1,17 @@
+*.pyc
+*.py~
+*.py#
+
+*.pkl
+output/
+train_log/__pycache__/
+*.mp4
+
+test/
+.idea/
+*.npz
+
+*.zip
+
+.venv/
+.git/
