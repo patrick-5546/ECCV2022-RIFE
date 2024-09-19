@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.8-slim-bookworm
 
 # install deps
 RUN apt-get update && apt-get -y install \
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get -y install \
 # setup RIFE
 WORKDIR /rife
 COPY . .
-COPY --from=ghcr.io/astral-sh/uv:python3.11-bookworm-slim /usr/local/bin/uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:python3.8-bookworm-slim /usr/local/bin/uv /bin/uv
 RUN uv pip sync --system requirements.txt
 
 ADD docker/inference_img /usr/local/bin/inference_img

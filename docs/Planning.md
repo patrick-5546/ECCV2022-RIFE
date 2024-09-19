@@ -11,7 +11,7 @@
             uv pip compile requirements.in -o requirements.windows.txt --index-url https://download.pytorch.org/whl/cu124 --extra-index-url https://pypi.org/simple
             ```
 
-    - `uv venv --python 3.11` to create virtual environment
+    - `uv venv --python 3.8` to create virtual environment
     - `source .venv/bin/activate` to activate it
     - `uv pip sync requirements.txt` to install dependencies
         - On Windows:
@@ -20,7 +20,7 @@
             uv pip sync requirements.windows.txt --index-url https://download.pytorch.org/whl/cu124 --extra-index-url https://pypi.org/simple
             ```
 
-- Updated Docker image to use Python 3.11 and made other optimizations
+- Made optimizations to the Docker image
 
 ## Performance evaluations
 
